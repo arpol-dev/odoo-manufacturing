@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_simulation_form_view" model="ir.ui.view">
+        <field name="name">sale.order.simulation.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="sequence">20</field>
+        <field name="arch" type="xml">
+            <page name="customer_signature" position="after">
+                <page name="simulation" string="Simulation">
+                    <field name="simulation_line_ids" mode="tree">
+                        <tree string="Lignes de simulation">
+                            <field name="product_template_id" string="Produit"/>
+                            <field name="simulation_qty" string="Quantité de simulation"/>
+                        </tree>
+                    </field>
+                    <field name="missing_component_ids" mode="tree">
+                        <tree string="Composants manquants">
+                            <field name="product_template_id" string="Produit"/>
+                            <field name="simulation_qty" string="Quantité de simulation"/>
+                            <field name="virtual_qty" string="Quantité disponible en stock"/>
+                            <field name="missing_qty" string="Quantité manquante"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
