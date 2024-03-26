@@ -4,26 +4,32 @@
         <field name="name">sale.order.simulation.form.view</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="sequence">20</field>
         <field name="arch" type="xml">
-            <page name="customer_signature" position="after">
-                <page name="simulation" string="Simulation">
-                    <field name="simulation_line_ids" mode="tree">
-                        <tree string="Lignes de simulation">
-                            <field name="product_template_id" string="Produit"/>
-                            <field name="simulation_qty" string="Quantité de simulation"/>
-                        </tree>
-                    </field>
-                    <field name="missing_component_ids" mode="tree">
-                        <tree string="Composants manquants">
-                            <field name="product_template_id" string="Produit"/>
-                            <field name="simulation_qty" string="Quantité de simulation"/>
-                            <field name="virtual_qty" string="Quantité disponible en stock"/>
-                            <field name="missing_qty" string="Quantité manquante"/>
-                        </tree>
-                    </field>
+            <data>
+                <page name="customer_signature" position="after">
+                    <page name="simulation" string="Simulation d'assemblage">
+                        <group string="Assemblages simulés">
+                            <field name="simulation_line_ids" mode="tree" nolabel="1">
+                                <tree string="Lignes de simulation">
+                                    <field name="product_template_id" string="Produit"/>
+                                    <field name="virtual_qty" string="Quantité disponible ou prévue"/>
+                                    <field name="simulation_qty" string="Quantité simulée"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Composants manquants">
+                            <field name="missing_component_ids" mode="tree" nolabel="1">
+                                <tree string="Composants manquants">
+                                    <field name="product_template_id" string="Produit"/>
+                                    <field name="simulation_qty" string="Quantité de simulation"/>
+                                    <field name="virtual_qty" string="Quantité disponible ou prévue"/>
+                                    <field name="missing_qty" string="Quantité manquante"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
                 </page>
-            </page>
+            </data>
         </field>
     </record>
 </odoo>

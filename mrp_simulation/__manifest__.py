@@ -2,11 +2,15 @@
 
 {
     "name": "Simulation de production",
-    "version": "14.0.0.0.2",
+    "version": "14.0.0.0.1",
     "category": "Manufacturing",
     "author": "ArPol-dev",
     "license": "AGPL-3",
     "website": "https://github.com/arpol-dev",
-    "depends": ["mrp", "sale"],
+    "depends": ["mrp", "sale_management"],
+    "data": [
+        "views/sale_order_view.xml",
+        "security/simulation_security.xml"
+    ],
     "installable": True,
 }
