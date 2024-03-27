@@ -15,20 +15,18 @@ class SaleOrder(models.Model):
         inverse_name='order_id',
         string='Lignes de simulation',
         compute='_compute_simulation',
-        copy=False)
+        store=False)
     
     missing_component_ids = fields.One2many(
         comodel_name='sale.missing.line',
         inverse_name='order_id',
         string='Lignes de composants manquants',
         compute='_compute_missing',
-        copy=False)
+        store=False)
     
     def _compute_simulation(self):
-        logging.warning('remove simulation')
-        existing = self.env['sale.simulation.line'].search([('order_id','=',self.id)])
-        existing.unlink()
-        logging.warning('success')
+        # existing = self.env['sale.simulation.line'].search([('order_id','=',self.id)])
+        # existing.unlink()
         lines = []
         for line in self.order_line:          
             if line.product_template_id.bom_ids :
@@ -40,12 +38,12 @@ class SaleOrder(models.Model):
                     'simulation_qty': line.product_uom_qty,
                 }
                 result = self.env['sale.simulation.line'].create(vals)   
-                lines.append(result.id)             
+                lines.append(result.id)  
         self.simulation_line_ids = [(6,1,lines)]
 
     def _compute_missing(self):
-        existing = self.env['sale.missing.line'].search([('order_id','=',self.id)])
-        existing.unlink()
+        # existing = self.env['sale.missing.line'].search([('order_id','=',self.id)])
+        # existing.unlink()
         lines = []
         missing = {}
         for line in self.order_line:
@@ -76,11 +74,10 @@ class SaleOrder(models.Model):
                 result = self.env['sale.missing.line'].create(vals) 
                 lines.append(result.id)  
         self.missing_component_ids = [(6,1,lines)]
-        self.write({'missing_component_ids': self.missing_component_ids})
-        logging.warning('end')
+        # self.write({'missing_component_ids': self.missing_component_ids})
 
 
-class SaleSimulationLine(models.Model):
+class SaleSimulationLine(models.AbstractModel):
     _name = 'sale.simulation.line'
     _description = 'Ligne de simulation'
     _order = 'id asc'
@@ -92,7 +89,7 @@ class SaleSimulationLine(models.Model):
     simulation_qty = fields.Integer(string='Quantité à assembler')
 
 
-class SaleMissingLine(models.Model):
+class SaleMissingLine(models.AbstractModel):
     _name = 'sale.missing.line'
     _description = 'Ligne de composant manquant'
     _order = 'id asc'

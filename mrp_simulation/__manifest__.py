@@ -10,7 +10,7 @@
     "depends": ["mrp", "sale_management"],
     "data": [
         "views/sale_order_view.xml",
-        "security/simulation_security.xml"
+        "security/ir.model.access.csv"
     ],
     "installable": True,
 }
