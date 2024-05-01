@@ -61,6 +61,10 @@ class SaleOrder(models.Model):
                 
         self.missing_component_ids = [(6,1,lines)]
 
+    def print_simulation(self):
+        return self.env.ref('mrp_simulation.print_simulation').report_action(self)
+
+
 class SaleSimulationLine(models.TransientModel):
     _name = 'sale.simulation.line'
     _description = 'Ligne de simulation'

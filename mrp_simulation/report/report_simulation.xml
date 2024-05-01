@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- <odoo>
+    <template id="report_donation_thanks">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                        <div class="page">
+                                <div
+                            t-field="o.partner_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                        />
+                        </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo> -->
+
+<odoo>
+    <data>
+        <!-- Report Template -->
+        <template id="report_simulation">
+
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <h1 style="text-align: center;">Simulation <span t-field="doc.name"/></h1>
+                        <p style="text-align: center;">Date de la simulation: <span t-esc="datetime.date.today()"/></p> <!-- Ajout de la date du jour -->
+                        <hr style="margin-top: 20px; margin-bottom: 20px; border-top: 1px solid #000;"/>
+                        <!-- One2many Field -->
+                        <h3>Assemblages simulés</h3>
+                        <table style="width: 100%">
+                            <thead>
+                                <tr t-attf-class="((loop.index % 2 == 0) ? 'bg-gray' : '')">
+                                    <th style="width: 60%">Produit</th>
+                                    <th style="width: 40%">Quantité simulée</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.simulation_line_ids" t-as="line">
+                                    <tr t-attf-class="((loop.index % 2 == 0) ? 'bg-gray' : '')">
+                                        <td style="text-align: center;"><span t-field="line.product_template_id"/></td>
+                                        <td style="text-align: center;"><span t-field="line.simulation_qty"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <hr style="margin-top: 20px; margin-bottom: 20px; border-top: 1px solid #000;"/>
+                        <!-- One2many Field -->
+                        <h3>Composants manquants</h3>
+                        <table style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th style="width: 60%">Produit</th>
+                                    <th style="width: 40%">Quantité manquante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.missing_component_ids" t-as="line">
+                                    <tr>
+                                        <td style="text-align: center;"><span t-field="line.product_template_id"/></td>
+                                        <td style="text-align: center;"><span t-field="line.missing_qty"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

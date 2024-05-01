@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+<!-- Action Report -->
+<record id="print_simulation" model="ir.actions.report">
+    <field name="name">Imprimer la simulation</field>
+    <field name="model">sale.order</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">mrp_simulation.report_simulation</field>
+    <field name="report_file">mrp_simulation.report_simulation</field>
+</record>
+
+
+</odoo>

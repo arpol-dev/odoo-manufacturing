@@ -27,6 +27,7 @@
                                 </tree>
                             </field>
                         </group>
+                        <button name="print_simulation" string="Imprimer la simulation" type="object" class="oe_highlight"/>
                     </page>
                 </page>
             </data>

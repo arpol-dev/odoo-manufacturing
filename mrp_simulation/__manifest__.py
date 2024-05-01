@@ -2,7 +2,7 @@
 
 {
     "name": "Simulation de production",
-    "version": "14.0.0.0.1",
+    "version": "14.0.0.0.2",
     "category": "Manufacturing",
     "author": "ArPol-dev",
     "license": "AGPL-3",
@@ -10,7 +10,9 @@
     "depends": ["mrp", "sale_management"],
     "data": [
         "views/sale_order_view.xml",
-        "security/ir.model.access.csv"
+        "security/ir.model.access.csv",
+        "report/report_simulation.xml",
+        "report/simulation_report_print.xml"
     ],
     "installable": True,
 }
